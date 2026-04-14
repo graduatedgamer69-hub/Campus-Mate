@@ -1,0 +1,271 @@
+/* Attendance UI Styles */
+.attendance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.btn-primary {
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--accent-secondary);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: var(--border-color);
+}
+
+.attendance-dashboard {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 40px;
+    align-items: center;
+}
+
+.overall-circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+}
+
+.progress-ring__circle {
+    transition: stroke-dashoffset 0.5s ease-in-out;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.circle-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.circle-text span {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.circle-text small {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.bunk-calculator {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 24px;
+    border-radius: 12px;
+    flex-grow: 1;
+}
+
+.bunk-calculator h3 {
+    margin-bottom: 16px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-primary);
+}
+
+.calculator-inputs p {
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.calculator-inputs input {
+    width: 60px;
+    padding: 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-size: 14px;
+}
+
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.subject-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 12px;
+    position: relative;
+}
+
+.subject-card h4 {
+    font-size: 16px;
+    margin-bottom: 16px;
+    padding-right: 30px;
+}
+
+.subj-actions {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+}
+
+.subj-actions i {
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 18px;
+}
+
+.subj-actions i:hover {
+    color: var(--accent-primary);
+}
+
+.subj-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.subj-bar-container {
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.subj-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.quick-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.quick-actions button {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
+    color: var(--text-main);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.quick-actions button.attend:hover {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border-color: var(--success);
+}
+
+.quick-actions button.bunk:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+/* Modal specific */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    padding: 32px;
+    width: 400px;
+    max-width: 90%;
+}
+
+.modal-content h3 { margin-bottom: 24px; }
+
+.form-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-main);
+    color: var(--text-main);
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}

@@ -1,0 +1,94 @@
+/* Mess UI Styles */
+.mess-container {
+    display: flex;
+    gap: 40px;
+}
+
+.menu-today {
+    flex: 2;
+}
+
+.admin-insights {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.meal-card {
+    padding: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.meal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meal-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-primary);
+}
+
+.badge {
+    background: var(--bg-main);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.rating-stars {
+    display: flex;
+    gap: 4px;
+    font-size: 24px;
+    color: var(--border-color);
+}
+
+.rating-stars i {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.rating-stars i.active, .rating-stars i:hover {
+    color: #fbbf24;
+}
+
+.insight-card {
+    padding: 24px;
+    text-align: center;
+}
+
+.big-rating {
+    font-size: 48px;
+    font-weight: 800;
+    margin: 16px 0;
+    color: var(--accent-primary);
+}
+
+.feedback-box {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.feedback-box textarea {
+    width: 100%;
+    height: 100px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-main);
+    color: var(--text-main);
+    resize: none;
+}
+
+.mt-2 { margin-top: 8px; }
