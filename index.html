@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusMate | Student Life Assistant</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons for premium icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/attendance.css">
+    <link rel="stylesheet" href="css/planner.css">
+    <link rel="stylesheet" href="css/mess.css">
+    <link rel="stylesheet" href="css/notes.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <i class="ph ph-graduation-cap logo-icon"></i>
+                <h2>CampusMate</h2>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="nav-item active" data-target="dashboard">
+                    <i class="ph ph-squares-four"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="nav-item" data-target="attendance">
+                    <i class="ph ph-chart-line-up"></i>
+                    <span>Attendance</span>
+                </li>
+                <li class="nav-item" data-target="planner">
+                    <i class="ph ph-calendar-check"></i>
+                    <span>Study Planner</span>
+                </li>
+                <li class="nav-item" data-target="mess">
+                    <i class="ph ph-bowl-food"></i>
+                    <span>Mess Feedback</span>
+                </li>
+                <li class="nav-item" data-target="notes">
+                    <i class="ph ph-books"></i>
+                    <span>Assignments Hub</span>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">S</div>
+                    <div class="user-info">
+                        <span class="name">Soham</span>
+                        <span class="role">Student</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="greeting">
+                    <h1 id="page-title">Dashboard</h1>
+                    <p id="date-display">Good morning! Here's your campus overview.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn theme-toggle"><i class="ph ph-moon"></i></button>
+                    <button class="icon-btn"><i class="ph ph-bell"></i></button>
+                </div>
+            </header>
+
+            <!-- Dashboard View -->
+            <section id="dashboard" class="module active">
+                <div class="stats-grid">
+                    <div class="stat-card glass">
+                        <h3>Classes Today</h3>
+                        <p class="stat-value">4</p>
+                        <span class="stat-sub">Next: Data Structures at 11:00 AM</span>
+                    </div>
+                    <div class="stat-card glass">
+                        <h3>Upcoming Tasks</h3>
+                        <p class="stat-value">2</p>
+                        <span class="stat-sub">OS Assignment due tomorrow</span>
+                    </div>
+                    <div class="stat-card glass">
+                        <h3>Overall Attendance</h3>
+                        <p class="stat-value">82%</p>
+                        <span class="stat-sub text-success">Safe Zone</span>
+                    </div>
+                </div>
+                <div class="dashboard-widgets">
+                    <div class="widget glass">
+                        <h2>Today's Menu</h2>
+                        <ul class="quick-list">
+                            <li><i class="ph ph-coffee"></i> <strong>Breakfast:</strong> Poha, Jalebi</li>
+                            <li><i class="ph ph-bowl-food"></i> <strong>Lunch:</strong> Paneer Butter Masala, Roti</li>
+                            <li><i class="ph ph-pizza"></i> <strong>Dinner:</strong> Dal Makhani, Jeera Rice</li>
+                        </ul>
+                    </div>
+                    <div class="widget glass">
+                        <h2>Pending Work</h2>
+                        <ul class="quick-list">
+                            <li><i class="ph ph-file-text"></i> MDM ASSIGNMENT <button class="btn-sm">Pending</button></li>
+                            <li><i class="ph ph-file-text"></i> OS ASSIGNMENT <button class="btn-sm">Pending</button></li>
+                            <li><i class="ph ph-file-text"></i> CT ASSIGNMENT <button class="btn-sm">Pending</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attendance Predictor View -->
+            <section id="attendance" class="module">
+                <div class="glass module-container">
+                    <div class="attendance-header">
+                        <h2>Attendance Predictor</h2>
+                        <button id="add-subject-btn" class="btn-primary"><i class="ph ph-plus"></i> Add Subject</button>
+                    </div>
+                    
+                    <div class="attendance-dashboard">
+                        <div class="overall-circle">
+                            <svg class="progress-ring" width="120" height="120">
+                               <circle class="progress-ring__circle bg" stroke="var(--border-color)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                               <circle id="overall-chart" class="progress-ring__circle value text-success" stroke="currentColor" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" style="stroke-dasharray: 314; stroke-dashoffset: 0;"/>
+                            </svg>
+                            <div class="circle-text">
+                                <span id="overall-percentage">0%</span>
+                                <small>Overall</small>
+                            </div>
+                        </div>
+                        <div class="bunk-calculator">
+                            <h3>Bunk Calculator <i class="ph ph-magic-wand"></i></h3>
+                            <div class="calculator-inputs">
+                                <p>If I miss <input type="number" id="miss-classes" value="1" min="1" max="10"> more classes among all subjects,</p>
+                                <p>My overall attendance will be: <strong id="projected-attendance" class="text-warning">--</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subjects-grid" id="subjects-list">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- Add Subject Modal -->
+                <div id="subject-modal" class="modal hidden">
+                    <div class="modal-content glass">
+                        <h3>Add/Edit Subject</h3>
+                        <input type="hidden" id="subj-id">
+                        <div class="form-group">
+                            <label>Subject Name</label>
+                            <input type="text" id="subj-name" placeholder="e.g. Data Structures">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Attended</label>
+                                <input type="number" id="subj-attended" placeholder="0" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Total classes</label>
+                                <input type="number" id="subj-total" placeholder="0" min="0">
+                            </div>
+                        </div>
+                        <div class="modal-actions">
+                            <button id="cancel-modal" class="btn-secondary">Cancel</button>
+                            <button id="save-subject" class="btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Study Planner View -->
+            <section id="planner" class="module">
+                <div class="planner-layout">
+                    <!-- Timer Side -->
+                    <div class="glass module-container timer-section">
+                        <h2>Focus Timer <i class="ph ph-timer"></i></h2>
+                        <div class="timer-display">
+                            <div class="mode-toggles">
+                                <button class="mode-btn active" data-time="180">Study Time</button>
+                                <button class="mode-btn" data-time="5">Short Break</button>
+                                <button class="mode-btn" data-time="15">Long Break</button>
+                            </div>
+                            <h1 id="timer-text">180:00</h1>
+                            <div class="timer-controls">
+                                <button id="timer-start" class="btn-primary">Start</button>
+                                <button id="timer-reset" class="btn-secondary">Reset</button>
+                            </div>
+                            <div id="burnout-alert" class="alert hidden text-danger">
+                                <i class="ph ph-warning"></i> You've been focusing heavily. Take a break!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Task Side -->
+                    <div class="glass module-container tasks-section">
+                        <h2>Tasks & Deadlines</h2>
+                        <div class="add-task-row">
+                            <input type="text" id="task-name" placeholder="What needs to be done?">
+                            <input type="date" id="task-deadline">
+                            <button id="add-task-btn" class="btn-primary"><i class="ph ph-plus"></i></button>
+                        </div>
+                        <ul id="task-list" class="task-list">
+                            <!-- Filled by JS -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mess Feedback View -->
+            <section id="mess" class="module">
+                <div class="glass module-container mess-container">
+                    <div class="menu-today">
+                        <h2>Today's Menu & Feedback</h2>
+                        <div class="meal-card glass">
+                            <div class="meal-header">
+                                <h3><i class="ph ph-coffee"></i> Breakfast</h3>
+                                <span class="badge">7:30 AM - 9:30 AM</span>
+                            </div>
+                            <p>Poha, Jalebi, Tea/Coffee</p>
+                            <div class="rating-stars" data-meal="breakfast">
+                                <i class="ph ph-star" data-val="1"></i><i class="ph ph-star" data-val="2"></i><i class="ph ph-star" data-val="3"></i><i class="ph ph-star" data-val="4"></i><i class="ph ph-star" data-val="5"></i>
+                            </div>
+                        </div>
+                        <div class="meal-card glass">
+                            <div class="meal-header">
+                                <h3><i class="ph ph-bowl-food"></i> Lunch</h3>
+                                <span class="badge">12:30 PM - 2:00 PM</span>
+                            </div>
+                            <p>Paneer Butter Masala, Dal, Rice, Roti, Salad</p>
+                            <div class="rating-stars" data-meal="lunch">
+                                <i class="ph ph-star" data-val="1"></i><i class="ph ph-star" data-val="2"></i><i class="ph ph-star" data-val="3"></i><i class="ph ph-star" data-val="4"></i><i class="ph ph-star" data-val="5"></i>
+                            </div>
+                        </div>
+                        <div class="meal-card glass">
+                            <div class="meal-header">
+                                <h3><i class="ph ph-pizza"></i> Dinner</h3>
+                                <span class="badge">7:30 PM - 9:00 PM</span>
+                            </div>
+                            <p>Dal Makhani, Jeera Rice, Chapati, Gulab Jamun</p>
+                            <div class="rating-stars" data-meal="dinner">
+                                <i class="ph ph-star" data-val="1"></i><i class="ph ph-star" data-val="2"></i><i class="ph ph-star" data-val="3"></i><i class="ph ph-star" data-val="4"></i><i class="ph ph-star" data-val="5"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-insights">
+                        <h2>Admin Insights (Mock)</h2>
+                        <div class="insight-card glass">
+                            <h4>Current Mess Rating</h4>
+                            <div class="big-rating">4.2 / 5.0</div>
+                            <p class="text-success"><i class="ph ph-trend-up"></i> Improved from last week</p>
+                        </div>
+                        <div class="feedback-box glass">
+                            <h4>Give Detailed Suggestion</h4>
+                            <textarea placeholder="Tell us what can be improved..."></textarea>
+                            <button class="btn-primary mt-2">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notes Sharing View -->
+            <section id="notes" class="module">
+                <div class="glass module-container">
+                    <div class="notes-header">
+                        <h2>Assignments Hub <i class="ph ph-books"></i></h2>
+                        <button class="btn-primary" id="upload-note-btn"><i class="ph ph-upload-simple"></i> Upload Assignment</button>
+                    </div>
+                    
+                    <div class="notes-toolbar">
+                        <div class="search-box">
+                            <i class="ph ph-magnifying-glass"></i>
+                            <input type="text" id="note-search" placeholder="Search assignments...">
+                        </div>
+                        <select id="note-filter" class="custom-select">
+                            <option value="all">All Branches</option>
+                            <option value="cs">Comp Sci</option>
+                            <option value="it">Info Tech</option>
+                            <option value="etc">Electronics</option>
+                        </select>
+                    </div>
+
+                    <div class="notes-grid" id="notes-list">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+                
+                <!-- Mock Upload Modal -->
+                <div id="upload-modal" class="modal hidden">
+                    <div class="modal-content glass">
+                        <h3>Upload Assignment</h3>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="up-title" placeholder="e.g. MDM Assignment 1">
+                        </div>
+                        <div class="form-group">
+                            <label>Subject / Tags</label>
+                            <input type="text" id="up-tags" placeholder="e.g. MDM">
+                        </div>
+                        <div class="form-group">
+                            <label>File (Will be saved locally)</label>
+                            <input type="file" id="up-file">
+                        </div>
+                        <div class="modal-actions">
+                            <button id="cancel-upload" class="btn-secondary">Cancel</button>
+                            <button id="save-upload" class="btn-primary">Upload</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/attendance.js"></script>
+    <script src="js/planner.js"></script>
+    <script src="js/mess.js"></script>
+    <script src="js/notes.js"></script>
+</body>
+</html>
